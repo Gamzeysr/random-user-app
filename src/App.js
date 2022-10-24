@@ -1,23 +1,44 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Card from "./components/Card";
+import axios from "axios";
+import { useState, useEffect } from "react";
+
+const url = "https://randomuser.me/api/";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState({});
+
+  const getUser = async () => {
+    try {
+      const { data } = await axios.get(url);
+      setUser(data.results[0]);
+    } catch (error) {
+      alert(error);
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+
+      setLoading(true);
+    }
+  };
+  console.log(user);
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="appcont">
+      <Card user={user} />
+      <button className="btn" onClick={() => getUser()}>
+        Random User
+      </button>
     </div>
   );
 }
