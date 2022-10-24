@@ -1,5 +1,5 @@
 ![Adsız tasarım](https://user-images.githubusercontent.com/108168084/197569586-f1019d51-91ab-4df4-b147-14c293264a20.gif)
-## user-app-gmz.netlify.app/ ✨✨
+## https://user-app-gmz.netlify.app/ ✨✨
 
 
 # Getting Started with Create React App
